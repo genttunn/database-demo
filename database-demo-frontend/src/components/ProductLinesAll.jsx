@@ -1,7 +1,12 @@
 import React, { Component } from "react";
 import { Card, CardDeck, Button } from "react-bootstrap";
 import greens from "../images/greens.jpg";
-import meat from "../images/meat.jpg";
+import tofu from "../images/tofu.jpg";
+import soya from "../images/soya.jpg";
+import cosmetic from "../images/cosmetic.jpg";
+import garden from "../images/garden.jpg";
+import kitchen from "../images/kitchen.jpg";
+
 import { connect } from "react-redux";
 import { fetchLine } from "../actions/productLine";
 import { Link } from "react-router-dom";
@@ -9,6 +14,27 @@ class ProductLineAll extends Component {
   componentDidMount() {
     this.props.fetchLineLocal();
   }
+  getImageName = name => {
+    let imgName = greens;
+    switch (name) {
+      case "Beauty":
+        imgName = cosmetic;
+        break;
+      case "Dried food":
+        imgName = soya;
+        break;
+      case "Fresh food":
+        imgName = tofu;
+        break;
+      case "Kitchen":
+        imgName = kitchen;
+        break;
+      case "Gardening":
+        imgName = garden;
+        break;
+    }
+    return imgName;
+  };
   render() {
     return (
       <React.Fragment>
@@ -21,7 +47,11 @@ class ProductLineAll extends Component {
             {this.props.productLine.productLineList.map(line => (
               <div className="p-2" key={line.id}>
                 <Card style={{ width: "12rem", margin: 5 }}>
-                  <Card.Img variant="top" src={greens} top width="25%" />
+                  <Card.Img
+                    variant="top"
+                    src={this.getImageName(line.name)}
+                    width="25%"
+                  />
                   <Card.Body>
                     <Card.Title>{line.name}</Card.Title>
                     <Link

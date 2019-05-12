@@ -11,7 +11,6 @@ export const loginREQ = status => ({
 });
 
 export function login(status) {
-  console.log(status);
   return async (dispatch, getState) => {
     dispatch(loginREQ(status));
   };
@@ -41,7 +40,10 @@ export function loginUSER(customer) {
       })
       .catch(error => {
         let errorMsg = error;
-        if (errorMsg == "Error: Request failed with status code 400") {
+        if (
+          errorMsg == "Error: Request failed with status code 400" ||
+          errorMsg == "Error: Request failed with status code 409"
+        ) {
           dispatch(loginUSER_REQ(customerToCheck));
           return;
         } else {
