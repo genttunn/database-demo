@@ -6,33 +6,29 @@ import ProductAddForm from './ProductAddForm';
 
 
 class ProductAdd extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {  }
-    }
-
     componentDidMount() {
         this.props.productLineFetchAll();
     }
 
     addProduct = (newP) => {
         const product = newP;
-
+        product.quantity = Number(product.quantity);
+        product.price = Number(product.price);
+        console.log(product);
         this.props.addProductLocal(product);
     };
 
     render() { 
         return ( 
             <div>
-                <ProductAddForm productLines={this.props.productLines} />
+                <ProductAddForm productLines={this.props.productLines} addProduct={this.addProduct} />
             </div>
         );
     }
 }
 
 const mapStateToProps = state => ({
-    // ideas: state.ideas,
-    productLines: state.productLineList,
+    productLines: state.productLine.productLineList,
 });
 
 const mapDispatchToProps = dispatch => ({

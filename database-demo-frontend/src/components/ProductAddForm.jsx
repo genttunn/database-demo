@@ -4,27 +4,65 @@ class ProductAddForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      newProduct: {}
+      newProduct: {
+        productLineId: 0,
+	      name: '',
+        description: '',
+        quantity: 0,
+        unit: '',	/* kg, kpl, pkt */
+        price: 0
+      }
     }
   }
+
+  inputChanged = event => {
+    this.setState({
+      newProduct: {
+        ...this.state.newProduct,
+        [event.target.id]: event.target.value
+      }
+    });
+  };
+
+  resetInputBox = () => {
+    this.setState({
+      newProduct: {
+        productLineId: 0,
+	      name: '',
+        description: '',
+        quantity: 0,
+        unit: '',	/* kg, kpl, pkt */
+        price: 0
+      }
+    })
+  };
+
+  handleSubmit = event => {
+    event.preventDefault();
+
+    const newProduct = this.state.newProduct;
+    this.resetInputBox();
+    this.props.addProduct(newProduct);
+  };
+
   render() {
     return (
       <form>
-        Product Line:
-                {/* <select id="productLineId" onChange={this.inputFieldValueChanged}>
-          {
-            this.props.productLines.map((item) =>
-              <option key={item.id} value={item.id} > {item.name} </option>
-            )
-
-          }
-        </select> */}
+        Product Line: {" "}
+          <select id="productLineId" onChange={this.inputChanged}>
+            <option key={0} value={0}>...</option>
+            {
+              this.props.productLines.map((item) =>
+                <option key={item.id} value={item.id}> {item.name} </option>
+              )
+            }
+        </select>
         <br />
         Name:{" "}
         <input
           id="name"
           type="text"
-          onChange={this.inputFieldValueChanged}
+          onChange={this.inputChanged}
           value={this.state.newProduct.name}
           placeholder="required"
           required={true}
@@ -35,42 +73,48 @@ class ProductAddForm extends Component {
           id="description"
           type="text"
           value={this.state.newProduct.description}
-          onChange={this.inputFieldValueChanged}
+          onChange={this.inputChanged}
           margin="normal"
           placeholder="required"
           required={true}
         />
         <br />
-        Budget:{" "}
+        Quantity:{" "}
         <input
-          id="budget"
+          id="quantity"
           type="number"
-          value={this.state.newProduct.budget}
-          onChange={this.inputFieldValueChanged}
+          value={this.state.newProduct.quantity}
+          onChange={this.inputChanged}
           margin="normal"
+          placeholder="required"
+          required={true}
         />
         <br />
-        Ready For Comment:{" "}
+        Unit:{" "}
         <input
-          id="readyForComment"
-          type="checkbox"
-          value={this.state.newProduct.readyForComment}
-          onChange={this.inputFieldValueChanged}
+          id="unit"
+          type="text"
+          value={this.state.newProduct.unit}
+          onChange={this.inputChanged}
           margin="normal"
+          placeholder="required"
+          required={true}
         />
         <br />
-        People Needed:{" "}
+        Price:{" "}
         <input
-          id="peopleNeeded"
+          id="price"
           type="number"
-          value={this.state.newProduct.peopleNeeded}
-          onChange={this.inputFieldValueChanged}
+          value={this.state.newProduct.price}
+          onChange={this.inputChanged}
           margin="normal"
+          placeholder="required"
+          required={true}
         />
         <br />
 
         <button type="button" onClick={this.handleSubmit}>
-          ADD NEW IDEA
+          ADD NEW PRODUCT
         </button>
       </form>
     );
