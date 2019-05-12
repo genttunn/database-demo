@@ -25,8 +25,8 @@ export const loginUSER_REQ = customer => ({
 export function loginUSER(customer) {
   let customerToCheck = {
     firstName: customer.firstName,
-    email: customer.email,
-    uid: customer.uid
+    email: customer.email
+    // uid: customer.uid
   };
   return async (dispatch, getState) => {
     const ajaxRequest = {
@@ -36,7 +36,7 @@ export function loginUSER(customer) {
     };
     axios(ajaxRequest)
       .then(response => {
-        dispatch(loginUSER_REQ(customerToCheck));
+        dispatch(loginUSER_REQ(customer));
       })
       .catch(error => {
         let errorMsg = error;
@@ -44,7 +44,7 @@ export function loginUSER(customer) {
           errorMsg == "Error: Request failed with status code 400" ||
           errorMsg == "Error: Request failed with status code 409"
         ) {
-          dispatch(loginUSER_REQ(customerToCheck));
+          dispatch(loginUSER_REQ(customer));
           return;
         } else {
           alert(error);

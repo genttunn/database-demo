@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { fetchByLine } from "../actions/productLine";
+import { fetchByLine, delProduct } from "../actions/productLine";
 import { Card, CardDeck, Button } from "react-bootstrap";
 import greens from "../images/greens.jpg";
 import tofu from "../images/tofu.jpg";
@@ -61,12 +61,17 @@ class ProductDetails extends Component {
                         <br />
                       </span>
                     </Card.Text>
-                    <Link
-                      to={{
-                        pathname: "/product/" + product.name,
-                        state: { product: product }
-                      }}
-                    />
+                    {this.props.admin ? (
+                      <Button
+                        variant="danger"
+                        className="m-2"
+                        onClick={() => this.props.delProductLocal(product)}
+                      >
+                        Delete
+                      </Button>
+                    ) : (
+                      ""
+                    )}
                   </Card.Body>
                 </Card>
               </div>
@@ -81,11 +86,15 @@ class ProductDetails extends Component {
 const mapDispatchToProps = dispatch => ({
   fetchByLineLocal: id => {
     dispatch(fetchByLine(id));
+  },
+  delProductLocal: product => {
+    dispatch(delProduct(product));
   }
 });
 
 const mapStateToProps = state => ({
-  currentLine: state.productLine.currentLine
+  currentLine: state.productLine.currentLine,
+  admin: state.login.admin
 });
 
 export default connect(

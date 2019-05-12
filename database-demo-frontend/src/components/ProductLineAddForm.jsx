@@ -1,53 +1,56 @@
-import React, { Component } from 'react';
-
+import React, { Component } from "react";
+import { Button } from "react-bootstrap";
 class ProductLineAddForm extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            name: ''
-        }
-    }
-
-    inputChanged = event => {
-        this.setState({
-            [event.target.id]: event.target.value
-        });
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: ""
     };
+  }
 
-    resetInputBox = () => {
-        this.setState({
-            name: ''
-        })
-    }
+  inputChanged = event => {
+    this.setState({
+      [event.target.id]: event.target.value
+    });
+  };
 
-    handleSubmit = event => {
-        event.preventDefault();
-    
-        const newProductLine = this.state;
-        this.resetInputBox();
-        this.props.addProductLine(newProductLine);
-      };
+  resetInputBox = () => {
+    this.setState({
+      name: ""
+    });
+  };
 
-    render() {
-        return (
-            <form>
-                Name:{" "}
-                <input
-                    id="name"
-                    type="text"
-                    onChange={this.inputChanged}
-                    value={this.state.name}
-                    placeholder="required"
-                    required={true}
-                />
-                <br />
+  handleSubmit = event => {
+    event.preventDefault();
 
-                <button type="button" onClick={this.handleSubmit}>
-                    ADD NEW PRODUCT LINE
-                </button>
-            </form>
-        );
-    }
+    const newProductLine = this.state;
+    this.resetInputBox();
+    this.props.addProductLine(newProductLine);
+  };
+
+  render() {
+    return (
+      <form>
+        Name:{" "}
+        <input
+          id="name"
+          type="text"
+          onChange={this.inputChanged}
+          value={this.state.name}
+          placeholder="required"
+          required={true}
+        />
+        <br />
+        <Button
+          type="button"
+          className="btn btn-sucess m-4"
+          onClick={this.handleSubmit}
+        >
+          ADD NEW PRODUCT LINE
+        </Button>
+      </form>
+    );
+  }
 }
 
 export default ProductLineAddForm;

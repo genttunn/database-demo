@@ -38,7 +38,7 @@ customer.get("/all", function(req, res) {
 
 customer.post("/", function(req, res) {
   // Just a start of err handling for model for you
-  if (req.body.firstName && req.body.email && req.body.uid) {
+  if (req.body.firstName && req.body.email) {
     knex
       .insert(req.body)
       .returning("*")

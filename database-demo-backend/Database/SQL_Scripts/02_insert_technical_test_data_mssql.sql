@@ -49,16 +49,15 @@ VALUES
       'Compact growing kit for home-made organic mung bean, everything included',
       80, 'pkt', 6.8)
 ;
-
 INSERT INTO Customer
-  (firstName, lastName, email, phone, address, city, postcode,uid)
+  (firstName, lastName, email, phone, address, city, postcode)
 VALUES
-  ('Sonja', 'Korhonen', 'sonja@mail.com', '0469525525', 'Hopeatie 10 B', 'Helsinki', '00440','fdsfsdfsd'),
-  ('Myy',   'Järvinen', 'pikku@mail.com', '0469525535', 'Hopeatie 10 B', 'Helsinki', '00440','dsfiuhwi'),
-  ( 'Kukka-Maaria', 'Pyykkönen', 'pekka@mail.com', '0469525545', 'Hopeatie 10 B', 'Helsinki', '00440','fsdhufvbsuh'),
-    ('Martti', 'Korhonen', 'martt@mail.com', '0469524825', 'Hopeatie 10 E', 'Helsinki', '00440','test1'),
-  ('Thomas',   'Järvinen', 'tommen@mail.com', '0469532935', 'Hopeatie 10 C', 'Helsinki', '00440','test2'),
-  ( 'Marie', 'Korhonen', 'mary@mail.com', '0463482145', 'Hopeatie 10 F', 'Helsinki', '00440','test3')
+  ('Sonja', 'Korhonen', 'sonja@mail.com', '0469525525', 'Hopeatie 10 B', 'Helsinki', '00440'),
+  ('Myy',   'Järvinen', 'pikku@mail.com', '0469525535', 'Hopeatie 10 B', 'Helsinki', '00440'),
+  ( 'Kukka-Maaria', 'Pyykkönen', 'pekka@mail.com', '0469525545', 'Hopeatie 10 B', 'Helsinki', '00440'),
+    ('Martti', 'Korhonen', 'martt@mail.com', '0469524825', 'Hopeatie 10 E', 'Helsinki', '00440'),
+  ('Thomas',   'Järvinen', 'tommen@mail.com', '0469532935', 'Hopeatie 10 C', 'Helsinki', '00440'),
+  ( 'Marie', 'Korhonen', 'mary@mail.com', '0463482145', 'Hopeatie 10 F', 'Helsinki', '00440')
 ;
 
 INSERT INTO Receipt

@@ -23,7 +23,22 @@ export default function productLine(state = initialState, action) {
       return {
         ...state,
         isLoading: false
-      }
+      };
+    case ActionTypes.DEL_PRODUCT_LINE:
+      return {
+        ...state,
+        isLoading: false
+      };
+    case ActionTypes.ADD_PRODUCT:
+      return {
+        ...state,
+        isLoading: false
+      };
+    case ActionTypes.DEL_PRODUCT_:
+      return {
+        ...state,
+        isLoading: false
+      };
     default:
       return state;
   }

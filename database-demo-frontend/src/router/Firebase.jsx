@@ -28,17 +28,15 @@ class Firebase extends Component {
       this.setState({ signedIn: !!user, userNow: user ? user : null });
       this.props.loginLocal(this.state.signedIn);
       if (this.state.signedIn) {
-        console.log("heyyyy");
         const customer = {
           firstName: firebase.auth().currentUser.displayName,
           email: firebase.auth().currentUser.email,
           uid: firebase.auth().currentUser.uid
         };
-        this.props.loginLocal(this.state.signedIn);
         this.props.loginUserLocal(customer);
       }
+      this.props.loginLocal(this.state.signedIn);
     });
-    console.log("firebase " + this.state.signedIn);
   };
 
   reauthenticate = currentPassword => {

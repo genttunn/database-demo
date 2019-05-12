@@ -115,6 +115,7 @@ product.delete("/:id", function(req, res) {
 /** http://localhost:8787/api/product/    with method=POST **/
 
 product.post("/", function(req, res) {
+  console.log(req.body);
   if (!req.body.name) {
     res
       .status(400)

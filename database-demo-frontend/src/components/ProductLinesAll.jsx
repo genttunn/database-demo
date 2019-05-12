@@ -8,7 +8,7 @@ import garden from "../images/garden.jpg";
 import kitchen from "../images/kitchen.jpg";
 
 import { connect } from "react-redux";
-import { fetchLine } from "../actions/productLine";
+import { fetchLine, delProductLine } from "../actions/productLine";
 import { Link } from "react-router-dom";
 class ProductLineAll extends Component {
   componentDidMount() {
@@ -35,6 +35,7 @@ class ProductLineAll extends Component {
     }
     return imgName;
   };
+
   render() {
     return (
       <React.Fragment>
@@ -62,6 +63,17 @@ class ProductLineAll extends Component {
                     >
                       <Button variant="primary">Explore</Button>
                     </Link>
+                    {this.props.admin ? (
+                      <Button
+                        variant="danger"
+                        className="m-2"
+                        onClick={() => this.props.delProductLineLocal(line)}
+                      >
+                        Delete
+                      </Button>
+                    ) : (
+                      ""
+                    )}
                   </Card.Body>
                 </Card>
               </div>
@@ -75,13 +87,16 @@ class ProductLineAll extends Component {
 
 const mapDispatchToProps = dispatch => ({
   fetchLineLocal: () => {
-    console.log("local");
     dispatch(fetchLine());
+  },
+  delProductLineLocal: line => {
+    dispatch(delProductLine(line));
   }
 });
 
 const mapStateToProps = state => ({
-  productLine: state.productLine
+  productLine: state.productLine,
+  admin: state.login.admin
 });
 
 export default connect(

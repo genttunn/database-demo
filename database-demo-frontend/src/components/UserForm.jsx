@@ -9,7 +9,7 @@ class UserForm extends Component {
           <h2>User Info</h2>
           <p>Name: {firebase.auth().currentUser.displayName}</p>
           <p>Email: {firebase.auth().currentUser.email}</p>
-          <p>UID: {firebase.auth().currentUser.uid}</p>
+
           <button
             className="btn btn-success "
             onClick={() => {

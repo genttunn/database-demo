@@ -7,6 +7,7 @@ import Customer from "../views/customerView/Customer";
 import UserView from "../views/customerView/UserView";
 import Product from "../views/productView/Product";
 import ProductLine from "../views/productLineView/ProductLine";
+import { connect } from "react-redux";
 import {
   Nav,
   Navbar,
@@ -24,7 +25,9 @@ class Navigator extends Component {
       <Router>
         <Navbar bg="dark" expand="lg" variant="dark" className="mb-3">
           <Link to="/">
-            <Navbar.Brand>DemoShop</Navbar.Brand>
+            <Navbar.Brand>
+              {this.props.admin ? "Admin Console" : "DemoShop"}
+            </Navbar.Brand>
           </Link>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
@@ -36,9 +39,6 @@ class Navigator extends Component {
               </Link>
               <Link to="/product">
                 <span style={{ color: "white", paddingLeft: 8 }}>Products</span>
-              </Link>
-              <Link to="/customer">
-                <span style={{ color: "white", paddingLeft: 8 }}>Customers</span>
               </Link>
             </Nav>
             <Link to="/account">
@@ -53,11 +53,15 @@ class Navigator extends Component {
           <Route exact path="/product" component={ProductLine} />
           <Route exact path="/product/:name" component={Product} />
           <Route exact path="/account" component={UserView} />
-          <Route exact path="/customer" component={Customer} />
         </Switch>
       </Router>
     );
   }
 }
-
-export default Navigator;
+const mapStateToProps = state => ({
+  admin: state.login.admin
+});
+export default connect(
+  mapStateToProps,
+  null
+)(Navigator);

@@ -25,6 +25,7 @@ productLine.get("/all", function(req, res) {
 });
 
 productLine.delete("/:id", function(req, res) {
+  console.log(req.params.id);
   knex("ProductLine")
     .where("id", req.params.id)
     .del()
@@ -84,4 +85,3 @@ productLine.post("/", function(req, res) {
 });
 
 export default productLine;
-

@@ -6,11 +6,13 @@
 
 // The only place for common server settings, including for CORS later
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 const SERVER_SETTINGS = {
+  port: 8787,
 
-    port: 8787,
-
-    api_url_prefix: "/api",
+  api_url_prefix: "/api"
 };
 
 // DB_SETTINGS
@@ -18,29 +20,25 @@ const SERVER_SETTINGS = {
 // The only place for common database settings
 
 const DB_SETTINGS = {
+  driverModule: "mssql",
 
-    driverModule: "mssql",
+  host: "localhost",
 
-    host: "localhost",
+  port: "1433",
 
-    port: "1433",
+  user: "database-demo",
 
-    user: "database-demo",
+  password: "ddd2019",
 
-    password: 'ddd2019',
+  database: "TestDatabase",
 
-    database: "TestDatabase",
+  multipleStatements: true,
 
-    multipleStatements: true,
+  debug: true,
 
-    debug: true,
+  connPoolMin: 0,
 
-    connPoolMin: 0,
-
-    connPoolMax: 7,
+  connPoolMax: 7
 };
 
-export {
-    SERVER_SETTINGS,
-    DB_SETTINGS
-}; // ------------------------------------------
+export { SERVER_SETTINGS, DB_SETTINGS }; // ------------------------------------------

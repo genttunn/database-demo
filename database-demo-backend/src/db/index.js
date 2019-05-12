@@ -1,23 +1,6 @@
 import knex from "knex";
-
-// LOCAL MSSQL DATABASE
-// export default knex({
-//   client: "mssql",
-//   connection: {
-//     host: "localhost",
-//     user: "database-demo",
-//     password: "ddd2019",
-//     database: "TestDatabase",
-//     port: 1433,
-//     options: {
-//       trustedConnection: true
-//     },
-//     useNullAsDefault: true
-//   }
-// });
-
 ////// ONLINE MYSQL DATABASE
-export default knex({
+const MYSQL_SETTINGS = {
   client: "mysql",
   connection: {
     host: "remotemysql.com",
@@ -31,4 +14,21 @@ export default knex({
     min: 0,
     max: 7
   }
-});
+};
+// LOCAL MSSQL DATABASE
+const MSSQL_SETTINGS = {
+  client: "mssql",
+  connection: {
+    host: "localhost",
+    user: "database-demo",
+    password: "ddd2019",
+    database: "TestDatabase",
+    port: 1433,
+    options: {
+      trustedConnection: true
+    },
+    useNullAsDefault: true
+  }
+};
+
+export default knex(MSSQL_SETTINGS);

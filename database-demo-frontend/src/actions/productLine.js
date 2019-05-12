@@ -58,7 +58,7 @@ export function fetchByLine(id) {
 }
 
 export const addProductLineREQ = () => ({
-  type: ActionTypes.ADD_PRODUCT_LINE,
+  type: ActionTypes.ADD_PRODUCT_LINE
 });
 
 export function addProductLine(newLine) {
@@ -73,20 +73,47 @@ export function addProductLine(newLine) {
         dispatch(addProductLineREQ());
         dispatch(fetchLine());
       })
-      .catch((error) => {
+      .catch(error => {
         console.error("Error: " + error);
         alert(error);
-    })
-    .then(() => {
+      })
+      .then(() => {
         return {
-            type: null
+          type: null
         }; // 'Empty' action object
-    });
-  }
+      });
+  };
 }
 
+export const delProductLineREQ = () => ({
+  type: ActionTypes.DEL_PRODUCT_LINE
+});
+
+export function delProductLine(line) {
+  console.log(line);
+  return async (dispatch, getState) => {
+    const ajaxRequest = {
+      method: "delete",
+      url: API_ROOT + "/productLine/" + line.id
+    };
+    axios(ajaxRequest)
+      .then(response => {
+        dispatch(delProductLineREQ());
+        dispatch(fetchLine());
+      })
+      .catch(error => {
+        console.error("Error: " + error);
+        alert(error);
+      })
+      .then(() => {
+        return {
+          type: null
+        }; // 'Empty' action object
+      });
+  };
+}
 export const addProductREQ = () => ({
-  type: ActionTypes.ADD_PRODUCT,
+  type: ActionTypes.ADD_PRODUCT
 });
 
 export function addProduct(newP) {
@@ -94,22 +121,48 @@ export function addProduct(newP) {
     const ajaxRequest = {
       method: "post",
       data: newP,
-      url: API_ROOT + "/productLine/"
+      url: API_ROOT + "/product"
     };
     axios(ajaxRequest)
       .then(response => {
         dispatch(addProductREQ());
         dispatch(fetchByLine(newP.productLineId));
       })
-      .catch((error) => {
+      .catch(error => {
         console.error("Error: " + error);
         alert(error);
-    })
-    .then(() => {
+      })
+      .then(() => {
         return {
-            type: null
+          type: null
         }; // 'Empty' action object
-    });
-  }
+      });
+  };
 }
 
+export const delProductREQ = () => ({
+  type: ActionTypes.DEL_PRODUCT
+});
+
+export function delProduct(product) {
+  return async (dispatch, getState) => {
+    const ajaxRequest = {
+      method: "delete",
+      url: API_ROOT + "/product/" + product.id
+    };
+    axios(ajaxRequest)
+      .then(response => {
+        dispatch(delProductREQ());
+        dispatch(fetchByLine(product.productLineId));
+      })
+      .catch(error => {
+        console.error("Error: " + error);
+        alert(error);
+      })
+      .then(() => {
+        return {
+          type: null
+        }; // 'Empty' action object
+      });
+  };
+}

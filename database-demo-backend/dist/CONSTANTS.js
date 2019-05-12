@@ -16,11 +16,11 @@ var SERVER_SETTINGS = {
 
 exports.SERVER_SETTINGS = SERVER_SETTINGS;
 var DB_SETTINGS = {
-  driverModule: "mssql",
+  driverModule: "msql",
   host: "localhost",
   port: "1433",
   user: "database-demo",
-  password: 'ddd2019',
+  password: "ddd2019",
   database: "TestDatabase",
   multipleStatements: true,
   debug: true,
