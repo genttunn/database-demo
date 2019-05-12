@@ -41,43 +41,47 @@ class ProductDetails extends Component {
     return (
       <div>
         <h2>{this.props.lineToSearch.line.name}</h2>
-        <CardDeck className="justify-content-center">
-          <div className="d-inline-flex flex-wrap justify-content-center">
-            {this.props.currentLine.map(product => (
-              <div className="p-2" key={product.id}>
-                <Card style={{ width: "12rem", margin: 5 }}>
-                  <Card.Img
-                    variant="top"
-                    src={this.getImageName(this.props.lineToSearch.line.name)}
-                    width="25%"
-                  />
-                  <Card.Body>
-                    <Card.Title>{product.name}</Card.Title>
-                    <Card.Text>
-                      <span>
-                        {product.description} <br />
-                        In stock: {product.quantity} <br />
-                        Price: {product.price} per {product.unit}
-                        <br />
-                      </span>
-                    </Card.Text>
-                    {this.props.admin ? (
-                      <Button
-                        variant="danger"
-                        className="m-2"
-                        onClick={() => this.props.delProductLocal(product)}
-                      >
-                        Delete
-                      </Button>
-                    ) : (
-                      ""
-                    )}
-                  </Card.Body>
-                </Card>
-              </div>
-            ))}
-          </div>
-        </CardDeck>
+        {this.props.currentLine.length == 0 ? (
+          "Out of Stock. Come back soon!"
+        ) : (
+          <CardDeck className="justify-content-center">
+            <div className="d-inline-flex flex-wrap justify-content-center">
+              {this.props.currentLine.map(product => (
+                <div className="p-2" key={product.id}>
+                  <Card style={{ width: "12rem", margin: 5 }}>
+                    <Card.Img
+                      variant="top"
+                      src={this.getImageName(this.props.lineToSearch.line.name)}
+                      width="25%"
+                    />
+                    <Card.Body>
+                      <Card.Title>{product.name}</Card.Title>
+                      <Card.Text>
+                        <span>
+                          {product.description} <br />
+                          In stock: {product.quantity} <br />
+                          Price: {product.price} per {product.unit}
+                          <br />
+                        </span>
+                      </Card.Text>
+                      {this.props.admin ? (
+                        <Button
+                          variant="danger"
+                          className="m-2"
+                          onClick={() => this.props.delProductLocal(product)}
+                        >
+                          Delete
+                        </Button>
+                      ) : (
+                        ""
+                      )}
+                    </Card.Body>
+                  </Card>
+                </div>
+              ))}
+            </div>
+          </CardDeck>
+        )}
       </div>
     );
   }
