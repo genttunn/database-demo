@@ -34,7 +34,8 @@ class Firebase extends Component {
           email: firebase.auth().currentUser.email,
           uid: firebase.auth().currentUser.uid
         };
-        // this.props.loginUserLocal(customer);
+        this.props.loginLocal(this.state.signedIn);
+        this.props.loginUserLocal(customer);
       }
     });
     console.log("firebase " + this.state.signedIn);
