@@ -35,11 +35,13 @@ class Navigator extends Component {
                 </span>
               </Link>
               <Link to="/product">
-                {" "}
-                <span style={{ color: "white" }}>Products</span>
+                <span style={{ color: "white", paddingLeft: 8 }}>Products</span>
+              </Link>
+              <Link to="/customer">
+                <span style={{ color: "white", paddingLeft: 8 }}>Customers</span>
               </Link>
             </Nav>
-            <Link to="/customer">
+            <Link to="/account">
               <Button className="btn btn-success">Account</Button>
             </Link>
           </Navbar.Collapse>
@@ -50,7 +52,8 @@ class Navigator extends Component {
           <Route exact path="/about" component={About} />
           <Route exact path="/product" component={ProductLine} />
           <Route exact path="/product/:name" component={Product} />
-          <Route exact path="/customer" component={UserView} />
+          <Route exact path="/account" component={UserView} />
+          <Route exact path="/customer" component={Customer} />
         </Switch>
       </Router>
     );
