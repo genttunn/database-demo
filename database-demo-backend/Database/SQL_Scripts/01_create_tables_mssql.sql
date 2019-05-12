@@ -59,8 +59,8 @@ CREATE TABLE Receipt (
 	INDEX Receipt_Customer (customerId),
 	CONSTRAINT FK_Receipt_Customer
 		FOREIGN KEY (customerId) REFERENCES Customer (id)
-		/*ON DELETE SET NULL
-		ON UPDATE RESTRICT*/
+		ON DELETE CASCADE
+		/*ON UPDATE RESTRICT*/
 
 );
 

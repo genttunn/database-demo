@@ -19,6 +19,11 @@ export default function productLine(state = initialState, action) {
         ...state,
         currentLine: action.currentLine
       };
+    case ActionTypes.ADD_PRODUCT_LINE:
+      return {
+        ...state,
+        isLoading: false
+      }
     default:
       return state;
   }

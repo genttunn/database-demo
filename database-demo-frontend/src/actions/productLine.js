@@ -56,3 +56,60 @@ export function fetchByLine(id) {
       });
   };
 }
+
+export const addProductLineREQ = () => ({
+  type: ActionTypes.ADD_PRODUCT_LINE,
+});
+
+export function addProductLine(newLine) {
+  return async (dispatch, getState) => {
+    const ajaxRequest = {
+      method: "post",
+      data: newLine,
+      url: API_ROOT + "/productLine/"
+    };
+    axios(ajaxRequest)
+      .then(response => {
+        dispatch(addProductLineREQ());
+        dispatch(fetchLine());
+      })
+      .catch((error) => {
+        console.error("Error: " + error);
+        alert(error);
+    })
+    .then(() => {
+        return {
+            type: null
+        }; // 'Empty' action object
+    });
+  }
+}
+
+export const addProductREQ = () => ({
+  type: ActionTypes.ADD_PRODUCT,
+});
+
+export function addProduct(newP) {
+  return async (dispatch, getState) => {
+    const ajaxRequest = {
+      method: "post",
+      data: newP,
+      url: API_ROOT + "/productLine/"
+    };
+    axios(ajaxRequest)
+      .then(response => {
+        dispatch(addProductREQ());
+        dispatch(fetchByLine(newP.productLineId));
+      })
+      .catch((error) => {
+        console.error("Error: " + error);
+        alert(error);
+    })
+    .then(() => {
+        return {
+            type: null
+        }; // 'Empty' action object
+    });
+  }
+}
+
