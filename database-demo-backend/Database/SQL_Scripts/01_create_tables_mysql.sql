@@ -15,10 +15,10 @@ ALTER TABLE ProductLine AUTO_INCREMENT=1;
 CREATE TABLE Product (
 	id 				INTEGER 		NOT NULL 	AUTO_INCREMENT,
 	productLineId	INTEGER,
-	name 			VARCHAR(255) 	NOT NULL, /* UNIQUE OR NOT? */
+	name 			VARCHAR(255) 	NOT NULL, 
 	description 	VARCHAR(255) 	NOT NULL,
 	quantity 		INTEGER 		NOT NULL,
-	unit			VARCHAR(50)		NOT NULL,	/* kg, kpl, pkt */
+	unit			VARCHAR(50)		NOT NULL,	
 	price			DECIMAL(19,2) 	NOT NULL,
 
 	CONSTRAINT	PK_Product 	PRIMARY KEY (id),
