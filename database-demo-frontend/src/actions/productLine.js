@@ -120,8 +120,13 @@ export function addProduct(newP) {
   return async (dispatch, getState) => {
     const ajaxRequest = {
       method: "post",
+<<<<<<< HEAD
       data: newP,
       url: API_ROOT + "/product"
+=======
+      url: API_ROOT + "/product/",
+      data: newP
+>>>>>>> 1b84d845c6338cbf17504aa0243fee4cbedef256
     };
     axios(ajaxRequest)
       .then(response => {
